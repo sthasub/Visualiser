@@ -1,29 +1,32 @@
 import React from "react";
-import Table from "./../components/Table";
+import TableContainer from "../components/TableContianer";
 import PieChart from "./../components/PieChart";
 import LineGraph from "./../components/LineGraph";
 import BarGraph from "./../components/BarGraph";
 import Input from "./../components/Input";
 const Dashboard = () => {
+    const bronchitis = () => "bronchitis";
+    const diabetes = () => "diabetes";
+
     return (<main className="container">
         <div className="row">
             <div className="col">
-                <PieChart />
+                <PieChart diseaseName={diabetes} />
             </div>
             <div className="col">
-                <BarGraph />
+                <BarGraph diseaseName={diabetes} />
             </div>
         </div>
-        <br/>
+        <br />
         <div className="row">
             <div className="col">
-                <LineGraph />
-            </div>
-            <div className="col">
-                <Table />
+                <LineGraph diseaseName={diabetes} />
             </div>
         </div>
-        <br/>
+        <div className="row">
+            <TableContainer />
+        </div>
+        <br />
         <div className="row">
             <div className="col-12 mx-auto">
                 <Input />
