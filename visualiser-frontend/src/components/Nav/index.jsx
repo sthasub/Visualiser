@@ -43,7 +43,7 @@ const Nav = () => {
                 </li>
                 <li className="nav-item">
                   <NavLink to='/login' className={location.pathname==="/login"?"hidden":""}>
-                  <button className="btn btn-danger" onClick={()=>{setShowButton(!showButton)}}>
+                  <button className="btn btn-danger">
                       Add Patient Information
                     </button>
                   </NavLink>
