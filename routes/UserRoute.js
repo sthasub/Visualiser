@@ -13,9 +13,9 @@ router.get("/", async (req, res) => {
             }
         }
     );
-        res.json(user);
+        res.status(200).json(user);
     } catch (error) {
-        
+        res.status(404).json(error);
     }
 });
 

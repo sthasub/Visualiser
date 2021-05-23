@@ -1,15 +1,25 @@
 import React from "react";
 import "./style.css";
-function Table({ patientData }) {
+function Table({ patientData, sort }) {
   return (
     <table className="table table-bordered">
       <thead>
         <tr>
-          <th scope="col">Disease Name</th>
-          <th scope="col">Patient Name</th>
-          <th scope="col">State</th>
-          <th scope="col">Gender</th>
-          <th scope="col">Birth Year</th>
+          <th scope="col">
+            <span onClick={() => sort("diseaseName")}>Disease Name</span>
+          </th>
+          <th scope="col">
+            <span onClick={() => sort("patientName")}>Patient Name</span>
+          </th>
+          <th scope="col">
+            <span onClick={() => sort("stateName")}>State</span>
+          </th>
+          <th scope="col">
+            <span onClick={() => sort("gender")}>gender</span>
+          </th>
+          <th scope="col">
+            <span onClick={() => sort("birthYear")}>Birth Year</span>
+          </th>
         </tr>
       </thead>
       <tbody>

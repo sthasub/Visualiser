@@ -12,7 +12,7 @@ const BarGraph = ({diseaseName}) => {
   function getGender(users) {
 
     const diseases = users[0].diseases.filter(
-      (disease) => disease.name.toUpperCase() === diseaseName().toUpperCase()
+      (disease) => disease.name.toUpperCase() === diseaseName.toUpperCase()
     );
 
 
@@ -63,7 +63,7 @@ const BarGraph = ({diseaseName}) => {
         });
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [diseaseName]);
 
   return (
     <div>

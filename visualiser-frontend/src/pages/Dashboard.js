@@ -1,38 +1,47 @@
-import React from "react";
-import TableContainer from "../components/TableContianer";
+import React, { useState } from "react";
+import TableContainer from "../components/TableContainer";
 import PieChart from "./../components/PieChart";
 import LineGraph from "./../components/LineGraph";
 import BarGraph from "./../components/BarGraph";
 import Input from "./../components/Input";
-const Dashboard = () => {
-    const bronchitis = () => "bronchitis";
-    const diabetes = () => "diabetes";
+import List from "../components/List";
 
-    return (<main className="container">
-        <div className="row">
-            <div className="col">
-                <PieChart diseaseName={diabetes} />
-            </div>
-            <div className="col">
-                <BarGraph diseaseName={diabetes} />
-            </div>
-        </div>
-        <br />
-        <div className="row">
-            <div className="col">
-                <LineGraph diseaseName={diabetes} />
-            </div>
-        </div>
-        <div className="row">
-            <TableContainer />
-        </div>
-        <br />
-        <div className="row">
-            <div className="col-12 mx-auto">
-                <Input />
-            </div>
-        </div>
-    </main>);
+const Dashboard = () => {
+    const [diseaseName, setdiseaseName] = useState("diabetes");
+    const handleNameChange = (name) => setdiseaseName(name);
+
+    return (
+        <main className="container">
+            <section className="row">
+                <aside className="col" style={{ background: "skyblue" }}>
+                    <List handler={handleNameChange} />
+                </aside>
+                <section className="col-9" style={{ background: "wheat" }}>
+                    <div className="row">
+                        <PieChart diseaseName={diseaseName} />
+                        <div className="col">
+                            <BarGraph diseaseName={diseaseName} />
+                        </div>
+                    </div>
+                    <br />
+                    <div className="row">
+                        <div className="col">
+                            <LineGraph diseaseName={diseaseName} />
+                        </div>
+                    </div>
+                    <div className="row">
+                        <TableContainer />
+                    </div>
+                    <br />
+                    <div className="row">
+                        <div className="col-12 mx-auto">
+                            <Input />
+                        </div>
+                    </div>
+                </section>
+            </section>
+        </main>
+    );
 }
 
 export default Dashboard;

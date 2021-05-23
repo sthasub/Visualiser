@@ -2,9 +2,10 @@ import React, { useEffect } from "react";
 import c3 from "c3";
 import API from "../../utils/API";
 const LineGraph = ({ diseaseName }) => {
+  
   function getPatientInfoWithDisease(users) {
     const diseases = users[0].diseases.filter(
-      (disease) => disease.name.toUpperCase() === diseaseName().toUpperCase()
+      (disease) => disease.name.toUpperCase() === diseaseName.toUpperCase()
     );
     let years = [];
     diseases.map((d) => {
@@ -38,7 +39,7 @@ const LineGraph = ({ diseaseName }) => {
         c3.generate({
           bindto: "#spline",
           data: {
-            columns: [[`Number of ${diseaseName()} patients by birth year `].concat(occurance)],
+            columns: [[`Number of ${diseaseName} patients by birth year `].concat(occurance)],
             type: "spline",
           },
           axis: {
@@ -53,7 +54,7 @@ const LineGraph = ({ diseaseName }) => {
           },
         });
       });
-  }, []);
+  }, [diseaseName]);
 
   return (
     <div>

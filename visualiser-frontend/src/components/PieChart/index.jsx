@@ -10,7 +10,7 @@ const PieChart = ({diseaseName}) => {
   function getGender(users) {
     // if (users.length === 0) return [[], []]; // loads the empty arrays
     const diseases = users[0].diseases.filter(
-      (disease) => disease.name.toUpperCase() === diseaseName().toUpperCase()
+      (disease) => disease.name.toUpperCase() === diseaseName.toUpperCase()
     );
     let male = "";
     let female = "";
@@ -35,9 +35,11 @@ const PieChart = ({diseaseName}) => {
             type: "pie",
           },
         });
-      })
+        
+      }
+      )
       .catch((err) => console.log(err));
-  }, []);
+  }, [diseaseName]);
 
   return (
     <div>
