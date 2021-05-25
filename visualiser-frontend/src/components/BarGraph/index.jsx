@@ -8,10 +8,11 @@ const BarGraph = ({diseaseName}) => {
   const sa = ["SA"];
   const nt = ["NT"];
   const nsw = ["NSW"];
+  const wa = ["WA"];
 
-  function getGender(users) {
+  function getGender(diagnosis) {
 
-    const diseases = users[0].diseases.filter(
+    const diseases = diagnosis.filter(
       (disease) => disease.name.toUpperCase() === diseaseName.toUpperCase()
     );
 
@@ -20,31 +21,34 @@ const BarGraph = ({diseaseName}) => {
     let SA = [];
     let NT = [];
     let NSW = [];
+    let WA = [];
     diseases.map((d) => {
       VIC = d.patients.filter((p) => p.state === vic[0]);
       SA = d.patients.filter((p) => p.state === sa[0]);
       NT = d.patients.filter((p) => p.state === nt[0]);
       NSW = d.patients.filter((p) => p.state === nsw[0]);
+      WA = d.patients.filter((p) => p.state === wa[0]);
     });
 
-    return [VIC, SA, NT, NSW];
+    return [VIC, SA, NT, NSW, WA];
   }
 
   useEffect(() => {
-    API.getData()
+    API.getDiagnosis()
       .then((res) => {
-        let [VIC, SA, NT, NSW] = getGender(res.data);
+        let [VIC, SA, NT, NSW, WA] = getGender(res.data);
         vic.push(VIC.length);
         sa.push(SA.length);
         nt.push(NT.length);
         nsw.push(NSW.length);
-        return [vic, sa, nt, nsw];
+        wa.push(WA.length);
+        return [vic, sa, nt, nsw, wa];
       })
-      .then(([vic, sa, nt, nsw]) => {
+      .then(([vic, sa, nt, nsw, wa]) => {
         c3.generate({
           bindto: "#bar",
           data: {
-            columns: [vic, sa, nt, nsw],
+            columns: [vic, sa, nt, nsw, wa],
             type: "bar",
             labels: true,
           },

@@ -6,19 +6,21 @@ const Container = () => {
   const [patients, setPatients] = useState([]);
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState(true);
+
   const formatAllData = (allData) => {
     const patientsData = creationOfNewObject(allData);
     return [].concat(...patientsData);
   };
 
   const creationOfNewObject = (allData) => {
+    console.log(allData);
     let pats = [];
-    allData[0].diseases.map((d) => {
+    allData.map((d) => {
       pats.push(
         d.patients.map((p) => ({
           diseaseName: d.name,
           patientName: p.name,
-          birthYear: dateFormatter(p.age),
+          birthYear: dateFormatter(p.birthYear),
           gender: p.gender,
           stateName: p.state,
         }))
@@ -61,7 +63,7 @@ const Container = () => {
   };
 
   useEffect(() => {
-    API.getData()
+    API.getDiagnosis()
       .then((res) => {
         return formatAllData(res.data);
       })

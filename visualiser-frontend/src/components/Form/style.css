@@ -1,0 +1,27 @@
+.form-control{
+    width:100%;
+
+}
+/* .form-control:focus { outline: thin dotted; } */
+form{
+    background:lightskyblue ;
+    border: 1px  black solid;
+    border-radius: 5px;
+    margin-top: 1%;
+    padding: 1%;
+    margin-left: auto;
+    margin-right:auto;
+    width: 30%;
+}
+#required{
+    color: black;
+}
+label{
+    color: white;
+    font-size: large;
+    font-weight: 500;
+}
+.btn.btn-primary{
+    margin-top: 1%;
+}
+

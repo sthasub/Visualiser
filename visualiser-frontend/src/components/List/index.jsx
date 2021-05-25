@@ -6,14 +6,14 @@ const List = ({handler})=>{
 
     const getDisease = (disease)=>{
         let putArray = [];
-        disease[0].diseases.map(
+        disease.map(
             (disease) => putArray.push(disease.name)
           );
         return putArray; 
     }
 
     useEffect(()=>{
-        API.getData().then(res=>{
+        API.getDiagnosis().then(res=>{
             setDiseaseName(getDisease(res.data));
             
         }).catch(err=>{

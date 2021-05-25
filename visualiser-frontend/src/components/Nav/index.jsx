@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import "./style.css";
 const Nav = () => {
   const location = useLocation();
-  const [showButton, setShowButton] = useState(true);
   return (
     <div>
       <div className="bg-primary">
@@ -42,9 +41,16 @@ const Nav = () => {
                   ></div>
                 </li>
                 <li className="nav-item">
-                  <NavLink to='/login' className={location.pathname==="/login"?"hidden":""}>
+                  <NavLink to='/addInformation' className={location.pathname==="/addInformation"?"hidden":""}>
                   <button className="btn btn-danger">
                       Add Patient Information
+                    </button>
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink to='/' className={location.pathname==="/"?"hidden":""}>
+                  <button className="btn btn-outline-warning">
+                      Back
                     </button>
                   </NavLink>
                 </li>

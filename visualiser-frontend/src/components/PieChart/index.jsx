@@ -7,9 +7,9 @@ const PieChart = ({diseaseName}) => {
   const females = ["female"];
   // const [Users, setUsers] = useState([]);
 
-  function getGender(users) {
+  function getGender(diagnosis) {
     // if (users.length === 0) return [[], []]; // loads the empty arrays
-    const diseases = users[0].diseases.filter(
+    const diseases = diagnosis.filter(
       (disease) => disease.name.toUpperCase() === diseaseName.toUpperCase()
     );
     let male = "";
@@ -22,7 +22,7 @@ const PieChart = ({diseaseName}) => {
   }
 
   useEffect(() => {
-    API.getData()
+    API.getDiagnosis()
       .then((res) => {
         // setUsers(res.data);
         let [male, female] = getGender(res.data);

@@ -3,14 +3,14 @@ import c3 from "c3";
 import API from "../../utils/API";
 const LineGraph = ({ diseaseName }) => {
   
-  function getPatientInfoWithDisease(users) {
-    const diseases = users[0].diseases.filter(
+  function getPatientInfoWithDisease(diagnosis) {
+    const diseases = diagnosis.filter(
       (disease) => disease.name.toUpperCase() === diseaseName.toUpperCase()
     );
     let years = [];
     diseases.map((d) => {
       d.patients.map((p) => {
-        let date = new Date(p.age);
+        let date = new Date(p.birthYear);
         years.push(date.getFullYear().toString());
       });
     });
@@ -31,7 +31,7 @@ const LineGraph = ({ diseaseName }) => {
   }
 
   useEffect(() => {
-    API.getData()
+    API.getDiagnosis()
       .then((res) => {
         return getPatientInfoWithDisease(res.data);
       })
