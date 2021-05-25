@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import API from "../utils/API";
 import Form from "./../components/Form";
-const AddPatientInfo = () => {
+const Registration = () => {
   const [value, setValue] = useState([]);
   const submitForm = (val) => {
     API.savePatientInfo(val).then(res => {
@@ -12,7 +12,7 @@ const AddPatientInfo = () => {
     setValue(val);
   };  
   return (<div >
-    <Form submitForm={submitForm} />
+    <Form submitForm={submitForm} formType="registration"/>
     {
       value.length!== 0 ? <div>dedinef</div> : null
     }
@@ -20,4 +20,4 @@ const AddPatientInfo = () => {
   </div>);
 }
 
-export default AddPatientInfo;
+export default Registration;
