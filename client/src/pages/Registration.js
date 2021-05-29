@@ -1,21 +1,30 @@
 import React, { useState } from "react";
 import API from "../utils/API";
 import Form from "./../components/Form";
+import { useHistory } from "react-router-dom";
+
+
 const Registration = () => {
-  const [value, setValue] = useState([]);
+  const history = useHistory();
+  const [value, setValue] = useState("");
   const submitForm = (val) => {
-    API.savePatientInfo(val).then(res => {
+    API.saveStaffInfo(val).then(res => {
       console.log("saved");
+      setValue("");
+      history.push("/login");
     }).catch(err => {
-      console.log(err);
+      if(err.response.status === 422){
+        setValue("Already Exist");
+        history.push("/registration");
+      }
     })
-    setValue(val);
-  };  
+
+  };
   return (<div >
     <Form submitForm={submitForm} formType="registration"/>
-    {
-      value.length!== 0 ? <div>dedinef</div> : null
-    }
+    {value?<div style={{color:"red", textAlign:"center"}}>
+      User aleady Exist!
+    </div>:null}
 
   </div>);
 }
