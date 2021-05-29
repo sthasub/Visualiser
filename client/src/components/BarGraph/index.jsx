@@ -45,26 +45,28 @@ const BarGraph = ({diseaseName}) => {
         return [vic, sa, nt, nsw, wa];
       })
       .then(([vic, sa, nt, nsw, wa]) => {
-        c3.generate({
-          bindto: "#bar",
-          data: {
-            columns: [vic, sa, nt, nsw, wa],
-            type: "bar",
-            labels: true,
-          },
-          axis: {
-            x: {
-              type: "category",
-              categories: [""],
+        setTimeout(()=>{
+          c3.generate({
+            bindto: "#bar",
+            data: {
+              columns: [vic, sa, nt, nsw, wa],
+              type: "bar",
+              labels: true,
             },
-          },
-          bar: {
-            space: 1.9,
-            width: {
-              ratio: 0.7
+            axis: {
+              x: {
+                type: "category",
+                categories: [""],
+              },
             },
-          },
-        });
+            bar: {
+              space: 1.9,
+              width: {
+                ratio: 0.7
+              },
+            },
+          });
+        },500);
       })
       .catch((err) => console.log(err));
   }, [diseaseName]);
