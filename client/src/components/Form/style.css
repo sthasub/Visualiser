@@ -23,17 +23,9 @@ form{
     padding: 1%;
     margin-left: auto;
     margin-right:auto;
-    width: 30%;
+    width: 40%;
     box-shadow: 3px 3px 5px 6px rgba(0, 0, 0, 0.4);
 }
-
-@media all and (max-width: 320px) {
-    form{
-        width: 100%;
-    }
-}
-
-
 
 #required{
     color: black;
@@ -53,3 +45,8 @@ label{
     margin-top: 1%;
 }
 
+@media only screen and (min-width: 280px ) and (max-width: 568px) {
+    form{
+        width: 90%;
+    }
+}
