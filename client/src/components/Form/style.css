@@ -1,26 +1,46 @@
 .form-control{
     width:100%;
-
+    background-color: transparent;
+    border-top: transparent;
+    border-right: transparent;
+    border-left: transparent;
 }
-/* .form-control:focus { outline: thin dotted; } */
+
+
+
+
+.form-control:focus{
+    border-color: inherit;
+    -webkit-box-shadow: none;
+    box-shadow:none;
+    background-color: transparent;
+    border-bottom-color: black;
+}
+
 form{
-    background:lightskyblue ;
-    border: 1px  black solid;
-    border-radius: 5px;
+    background:white ;
     margin-top: 1%;
     padding: 1%;
     margin-left: auto;
     margin-right:auto;
     width: 30%;
+    box-shadow: 3px 3px 5px 6px rgba(0, 0, 0, 0.4);
 }
+
 #required{
     color: black;
 }
+.form-check-input{
+    margin-top: 15px;
+}
+
 label{
-    color: white;
+    color: black;
     font-size: large;
     font-weight: 500;
+    margin-top: 9px;
 }
+
 .btn.btn-primary{
     margin-top: 1%;
 }
