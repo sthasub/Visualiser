@@ -6,12 +6,19 @@ const PieChart = ({diseaseName}) => {
   const males = ["male"];
   const females = ["female"];
   // const [Users, setUsers] = useState([]);
-
   function getGender(diagnosis) {
     // if (users.length === 0) return [[], []]; // loads the empty arrays
+    // diagnosis.forEach(diagnosis => {
+    //   diagnosis.patients.forEach(patient=>{
+    //     let da = new Date(patient.date);
+    //     console.log(da.getFullYear().toString());
+    //   });
+    // });
+
     const diseases = diagnosis.filter(
       (disease) => disease.name.toUpperCase() === diseaseName.toUpperCase()
     );
+
     let male = "";
     let female = "";
     diseases.map((d) => {
@@ -28,13 +35,15 @@ const PieChart = ({diseaseName}) => {
         let [male, female] = getGender(res.data);
         males.push(male.length);
         females.push(female.length);
-        c3.generate({
-          bindto: "#pie",
-          data: {
-            columns: [males, females],
-            type: "pie",
-          },
-        });
+        setTimeout(()=>{
+          c3.generate({
+            bindto: "#pie",
+            data: {
+              columns: [males, females],
+              type: "pie",
+            },
+          });
+        },500);
         
       }
       )
