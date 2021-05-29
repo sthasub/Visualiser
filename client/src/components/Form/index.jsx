@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
-
 import "./style.css";
 
 const Form = ({ submitForm, formType }) => {
   // common states
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
+
+  //drop
+
+  const [location, setLocations] = useState("");
 
   // Patient States
   const [gender, setGender] = useState("");
@@ -20,6 +23,8 @@ const Form = ({ submitForm, formType }) => {
   const [cpassword, setCpassword] = useState("");
   const [email, setEmail] = useState("");
   const [errorEmail, setErrorEmail] = useState("");
+
+  
 
   const validate = () => {
     setErrorEmail("");
@@ -195,16 +200,19 @@ const Form = ({ submitForm, formType }) => {
           </div>
           <div className="form-group">
             <label htmlFor="state">State</label>
-            <input
-              type="text"
-              autoComplete="off"
-              className="form-control rounded-0"
-              id="state"
-              aria-describedby="state"
-              placeholder="Enter State"
-              value={region}
+            <select
+              className="form-select"
+              aria-label="Default select example"
               onChange={inputHandler("region")}
-            />
+            >
+              <option disabled>Select State</option>
+              <option value="NSW">New South Wales</option>
+              <option value="ACT">Australian Capital Territory</option>
+              <option value="TAS">Tasmania</option>
+              <option value="SA">South Australia</option>
+              <option value="WA">Western Australia</option>
+              <option value="NT">Northern Territory</option>
+            </select>
           </div>
           <div className="form-group">
             <label htmlFor="diagnosis" id="da">
