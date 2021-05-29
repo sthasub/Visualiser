@@ -6,6 +6,7 @@ const patientSchema = new Schema({
   birthYear: { type: String, required: true },
   gender: { type: String, required: true },
   state: { type: String, required: true },
+  date: { type: Date, default: Date.now },
 });
 
 const Patient = mongoose.model("Patient", patientSchema);
