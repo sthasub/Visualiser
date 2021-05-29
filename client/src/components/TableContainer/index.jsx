@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import API from "../../utils/API";
 import "./style.css";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faSearch} from "@fortawesome/free-solid-svg-icons";
 import Table from "../Table";
+
 const Container = () => {
   const [patients, setPatients] = useState([]);
   const [search, setSearch] = useState("");
@@ -13,7 +16,6 @@ const Container = () => {
   };
 
   const creationOfNewObject = (allData) => {
-    console.log(allData);
     let pats = [];
     allData.map((d) => {
       pats.push(
@@ -58,7 +60,8 @@ const Container = () => {
   }
 
   const dateFormatter = (date) => {
-    const d = new Date(Date.parse(date));
+    const getDate = date.split("/");
+    const d = new Date(parseInt(getDate[2]),parseInt(getDate[1])-1,parseInt(getDate[0]));
     return d.getFullYear().toString();
   };
 
@@ -86,11 +89,18 @@ const Container = () => {
 
   return (
     <div>
+      <br/>
+      
       <input
+          id="search"
           type="text"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
+          placeholder="search here"
         />
+        <FontAwesomeIcon icon={faSearch}/>
+        <br/>
+        <br/>
         <Table sort={sorting} patientData={searchName(patients)} />
     </div>
   );

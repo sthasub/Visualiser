@@ -1,4 +1,11 @@
-input{
-    display: flex;
-    justify-content: center;
+#search{
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-left-color: transparent;
+    border-bottom-color: gray;
+    text-align: center;
+}
+
+input:focus{
+    outline: none;
 }
