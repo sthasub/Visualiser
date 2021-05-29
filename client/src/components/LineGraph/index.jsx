@@ -10,7 +10,8 @@ const LineGraph = ({ diseaseName }) => {
     let years = [];
     diseases.map((d) => {
       d.patients.map((p) => {
-        let date = new Date(p.birthYear);
+        const getDate = p.birthYear.split("/");
+        const date = new Date(parseInt(getDate[2]),parseInt(getDate[1])-1,parseInt(getDate[0]));
         years.push(date.getFullYear().toString());
       });
     });
@@ -36,23 +37,25 @@ const LineGraph = ({ diseaseName }) => {
         return getPatientInfoWithDisease(res.data);
       })
       .then(([years, occurance]) => {
-        c3.generate({
-          bindto: "#spline",
-          data: {
-            columns: [[`Number of ${diseaseName} patients by birth year `].concat(occurance)],
-            type: "spline",
-          },
-          axis: {
-            x: {
-              type: "category",
-              categories: years,
-              label: 'Years'
+        setTimeout(()=>{
+          c3.generate({
+            bindto: "#spline",
+            data: {
+              columns: [[`Number of ${diseaseName} patients by birth year `].concat(occurance)],
+              type: "spline",
             },
-            y:{
-              label: 'Number of Patients'
-            }
-          },
-        });
+            axis: {
+              x: {
+                type: "category",
+                categories: years,
+                label: 'Years'
+              },
+              y:{
+                label: 'Number of Patients'
+              }
+            },
+          });
+        },512)
       });
   }, [diseaseName]);
 
