@@ -2,8 +2,9 @@ import React from "react";
 import "./style.css";
 function Table({ patientData, sort }) {
   return (
-    <table className="table table-bordered">
-      <thead>
+    <table className="table table-hover">
+        <caption>List of Patients</caption>
+      <thead className="table-active">
         <tr>
           <th scope="col">
             <span onClick={() => sort("diseaseName")}>Disease Name</span>
