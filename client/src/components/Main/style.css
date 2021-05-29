@@ -1,0 +1,8 @@
+aside{
+    background: lightblue;
+    box-shadow: 3px 8px 5px 6px rgba(0, 0, 0, 0.4);
+}
+
+#pie, #bar, #line, #table{
+    box-shadow: 3px 8px 5px 6px rgba(0, 0, 0, 0.2);
+}
