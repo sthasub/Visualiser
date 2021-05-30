@@ -12,6 +12,7 @@ import Registration from "./pages/Registration";
 import {initialState, reducer} from "./reducer/UseReducer";
 
 import 'c3/c3.css';
+import Footer from "./components/Footer";
 
 export const UserContext = createContext();
 
@@ -29,6 +30,7 @@ function App() {
         <Route exact path="/registration" component={Registration}/>
         <Redirect to="/" />
       </Switch>
+      <Footer/>
     </Router>
     </UserContext.Provider>
     </div>
