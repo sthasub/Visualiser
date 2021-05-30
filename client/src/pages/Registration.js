@@ -22,9 +22,9 @@ const Registration = () => {
   };
   return (<div >
     <Form submitForm={submitForm} formType="registration"/>
-    {value?<div style={{color:"red", textAlign:"center"}}>
-      User aleady Exist!
-    </div>:null}
+    {value?<h5 style={{color:"red", textAlign:"center", marginTop:"10px"}}>
+      User already Exist!
+    </h5>:null}
 
   </div>);
 }

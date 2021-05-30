@@ -93,7 +93,7 @@ router.post("/login", async (req, res) => {
                 httpOnly: true
             })
             if (!isMatch) {
-                return res.status(400).json({ msg: "invalid credential password" });
+                return res.status(400).json({ msg: "invalid credential " });
             } else {
                 res.status(201).json({ message: "login successful", token:token });
             }
