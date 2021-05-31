@@ -90,7 +90,6 @@ router.post("/login", async (req, res) => {
             const token = await userLogin.generateToken();
             res.cookie("visualiserToken", token, {
                 expires: new Date(Date.now() + (60 * 1000 * 60 * 12)),
-                secure:true,
                 httpOnly: true,
             })
             if (!isMatch) {
