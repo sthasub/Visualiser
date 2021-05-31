@@ -90,7 +90,8 @@ router.post("/login", async (req, res) => {
             const token = await userLogin.generateToken();
             res.cookie("visualiserToken", token, {
                 expires: new Date(Date.now() + (60 * 1000 * 60 * 12)),
-                httpOnly: true
+                secure:true,
+                httpOnly: true,
             })
             if (!isMatch) {
                 return res.status(400).json({ msg: "invalid credential " });
