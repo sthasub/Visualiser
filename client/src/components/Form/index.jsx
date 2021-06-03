@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "./style.css";
 
-const Form = ({ submitForm, formType }) => {
+const Form = ({ submitForm, formType, diagnosisArray }) => {
   // common states
   const [firstname, setFirstName] = useState("");
   const [lastname, setLastName] = useState("");
 
   //drop
 
-  const [location, setLocations] = useState("");
+  // const [location, setLocations] = useState("");
 
   // Patient States
   const [gender, setGender] = useState("");
@@ -24,14 +24,51 @@ const Form = ({ submitForm, formType }) => {
   const [email, setEmail] = useState("");
   const [errorEmail, setErrorEmail] = useState("");
 
-  
+  // diagnosis selection
+  const [select, setSelect] = useState("");
+
+  const diagnosisInputs = (e) => {
+    e.preventDefault();
+    setSelect(e.target.value);
+  };
+
+  const diagnosisFuntion = () => (
+    <>
+      <label htmlFor="diagnosis" id="da">
+        Diagnosis
+      </label>
+      <input
+        type="text"
+        autoComplete="off"
+        className="form-control rounded-0"
+        id="diagnosis"
+        aria-describedby="diagnosis"
+        placeholder="Enter Diagnosis"
+        value={diagnosis}
+        onChange={inputHandler("diagnosis")}
+      />
+      OR
+      <select
+        className="form-select"
+        aria-label="Default select example"
+        onChange={diagnosisInputs}
+      >
+        {diagnosisArray.map((element, index) => (
+          <option value={element} key={index}>
+            {element.toUpperCase()}
+          </option>
+        ))}
+      </select>
+      <br />
+    </>
+  );
 
   const validate = () => {
     setErrorEmail("");
 
-    if (email.includes("@") && email.includes(".")){ 
-      return true;}
-    else{ 
+    if (email.includes("@") && email.includes(".")) {
+      return true;
+    } else {
       return false;
     }
   };
@@ -79,8 +116,8 @@ const Form = ({ submitForm, formType }) => {
   const isPatientFormFilled =
     firstname.length > 0 &&
     lastname.length > 0 &&
-    region.length > 0 &&
-    diagnosis.length > 0;
+    region.length > 0 && 
+    (diagnosis.length > 0 || select.length > 0);
 
   const isLoginFormFilled = staffId.length > 0 && password.length > 0;
   const isSignupFormFilled =
@@ -105,7 +142,7 @@ const Form = ({ submitForm, formType }) => {
       gender: gender,
       dob: getData(),
       region: region,
-      diagnosis: diagnosis,
+      diagnosis: diagnosis?diagnosis:select,
     };
     return (
       <div id="forms">
@@ -120,6 +157,7 @@ const Form = ({ submitForm, formType }) => {
             setGender("");
             setRegion("");
             setDob("");
+            setSelect("");
           }}
         >
           <h1>Patient Form</h1>
@@ -206,16 +244,17 @@ const Form = ({ submitForm, formType }) => {
               onChange={inputHandler("region")}
             >
               <option disabled>Select State</option>
-              <option value="NSW">New South Wales</option>
+              <option value="NSW" checked>New South Wales</option>
               <option value="ACT">Australian Capital Territory</option>
               <option value="TAS">Tasmania</option>
               <option value="SA">South Australia</option>
               <option value="WA">Western Australia</option>
               <option value="NT">Northern Territory</option>
+              <option value="VIC">Victoria</option>
             </select>
           </div>
           <div className="form-group">
-            <label htmlFor="diagnosis" id="da">
+            {/* <label htmlFor="diagnosis" id="da">
               Diagnosis
             </label>
             <input
@@ -227,7 +266,8 @@ const Form = ({ submitForm, formType }) => {
               placeholder="Enter Diagnosis"
               value={diagnosis}
               onChange={inputHandler("diagnosis")}
-            />
+            /> */}
+            {diagnosisFuntion()}
           </div>
           <button
             type="submit"

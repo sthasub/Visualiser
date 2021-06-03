@@ -5,6 +5,7 @@ import {useHistory} from "react-router-dom";
 const AddPatientInfo = () => {
   const [value, setValue] = useState([]);
   const [data, setData] = useState({});
+  const [diagnosis, setDiagnosis] = useState([]);
   const history = useHistory();
   
   const callAddPateintPage = async () => {
@@ -23,6 +24,11 @@ const AddPatientInfo = () => {
     API.userDetail().then(res=>{
       setData(res.data.token);
     });
+    API.getDiagnosis().then(res=>{
+      const appendDiagnosis = [];
+      res.data.map(ele=>appendDiagnosis.push(ele.name));
+      setDiagnosis(appendDiagnosis);
+    });
   },[]);
 
   const submitForm = (val) => {
@@ -35,7 +41,7 @@ const AddPatientInfo = () => {
   };
 
   return (<div >
-    <Form submitForm={submitForm} formType="addPatient" />
+    <Form submitForm={submitForm} formType="addPatient" diagnosisArray={diagnosis}/>
     {
       value.length !== 0 ? <div></div> : null
     }
